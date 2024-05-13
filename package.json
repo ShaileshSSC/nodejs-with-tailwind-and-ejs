@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon node index.js",
-    "tailwind": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+    "dev": "nodemon --config nodemon.json app/index.js",
+    "start": "nodemon app/index.js",
+    "tailwind": "npx tailwindcss -i ./app/public/css/input.css -o ./app/public/css/output.css --watch"
   },
   "author": "",
   "license": "ISC",

@@ -9,10 +9,13 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/public'));
 
-app.use(express.static('public'))
+console.log(path.join(__dirname, '/public'))
+console.log('test23');
+
+app.use(express.static('app/public'))
 
 app.use('/', router);
 
 app.listen(port, ()=> {
-    console.log(`listening on port yeyt ${port}`)
+    console.log(`listening on port ${port}`)
 })

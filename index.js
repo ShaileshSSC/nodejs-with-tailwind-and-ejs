@@ -1,20 +1,16 @@
-const express = require('express');
-const app = express();
-const path = require('path');
+const express = require('express')
+const app = express()
 
-const port = 3000;
+//use template engine ejs
+app.set('view engine', 'ejs')
 
-// app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, '/public'));
+app.use(express.static('public'))
 
-console.log(path.join(__dirname, '/public'))
+// respond with "hello world" when a GET request is made to the homepage
+app.get('/*', (req, res) => {
+  res.render('index');
+})
 
-app.use(express.static('app/public'))
-
-app.use('/*', (req, res) => {
-    res.send('index');
-});
-
-app.listen(port, ()=> {
-    console.log(`listening on port ${port}`)
+app.listen(5000, (req, res)=> {
+    console.log(`server listening on port 5000`);
 })

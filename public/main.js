@@ -12,7 +12,7 @@ function setInnerHtml(elm, html) {
 
 const router = async () => {
     const routes = [
-        { path: '/', load: () => loadHTML('Home') },
+        {path: '/', load: () => loadHTML('Home') },
         {path: '/users', load: () => loadHTML('Users')},
     ]
 

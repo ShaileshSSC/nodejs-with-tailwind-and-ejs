@@ -1,12 +1,26 @@
-<button></button>
+<h1>Lobby</h1>
+
+<h4 id="timer">Page loaded 0 seconds</h4>
 
 <script>
     let seconds = 0;
-        document.getElementById('home').innerHTML = `hello from the home page ${seconds}`
+    setInterval(() => {
+        seconds += 1;
+        document.querySelector('#timer').innerHTML = `Page loaded ${seconds} seconds`;
+    }, 1000);
 </script>
 
 <style>
-    #home {
-        color: green;
+    #timer {
+        color: chocolate;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 30px;
+        margin: 10px;
+    }
+    h1 {
+        color: rgb(30, 64, 157);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 50px;
+        margin: 10px;
     }
 </style>

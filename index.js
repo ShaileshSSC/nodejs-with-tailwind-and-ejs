@@ -1,32 +1,40 @@
-const express = require('express')
+import express from 'express';
 const app = express()
 
-//io
-const server = require('http').createServer(app);
-const io = require("socket.io")(server, {
-    cors: {
-      origin: "http://localhost:5000",
-      methods: ["GET", "POST"]
-    }
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+const httpServer = createServer();
+const io = new Server(httpServer, {
+   cors: {
+    origin: "http://localhost:5000",
+    methods: ["GET", "POST"]
+  }
 });
 
+// Game classes
+import Game from './classes/Game.js';
 
-//use template engine ejs
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/*', (req, res) => {
-  res.render('index');
+  res.render('app');
 })
+
+let game = new Game();
+
+game.init();
 
 app.listen(5000, (req, res)=> {
     console.log(`server listening on port 5000`);
 })
 
 io.on("connection", (socket) => {
-    console.log(socket.id);
+    console.log(`new user ${socket.id} joined the game!`);
+
+    socket.emit("loadPage", 'Home');
 });
 
 io.listen(3000);

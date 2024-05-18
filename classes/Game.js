@@ -12,4 +12,8 @@ export default class Game {
         this.ConnectionListener.init();
         console.log('game init..');
     }
+
+    update() {
+        
+    }
 }

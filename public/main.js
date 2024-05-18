@@ -37,7 +37,7 @@ const router = async () => {
 
     setInnerHtml(document.querySelector('#root'), currentRoute.htmlRaw);
 
-
+    
 
     // currentRoute.loadHTML().then(html => {
     //     document.getElementById("root").innerHTML = html;
@@ -49,4 +49,4 @@ const router = async () => {
     // setInnerHtml(document.querySelector('#root'), await currentRoute.view());
 }
 
-router();
+//router();

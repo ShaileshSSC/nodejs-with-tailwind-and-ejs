@@ -1,6 +1,16 @@
 const express = require('express')
 const app = express()
 
+//io
+const server = require('http').createServer(app);
+const io = require("socket.io")(server, {
+    cors: {
+      origin: "http://localhost:5000",
+      methods: ["GET", "POST"]
+    }
+});
+
+
 //use template engine ejs
 app.set('view engine', 'ejs')
 
@@ -14,3 +24,9 @@ app.get('/*', (req, res) => {
 app.listen(5000, (req, res)=> {
     console.log(`server listening on port 5000`);
 })
+
+io.on("connection", (socket) => {
+    console.log(socket.id);
+});
+
+io.listen(3000);

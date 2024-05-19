@@ -1,7 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-export default class ConnectionListener {
+export default class ConnectHandler {
     constructor() {
         const httpServer = createServer();
         this.io = new Server(httpServer, {
@@ -16,7 +16,7 @@ export default class ConnectionListener {
         console.log('connection Listener inited..');
         this.io.on("connection", (socket) => {
             console.log(`new user ${socket.id} joined the game!`);
-        
+            // this.game.players
             socket.emit("loadPage", 'Home');
         });
         

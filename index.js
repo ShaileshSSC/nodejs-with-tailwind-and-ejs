@@ -1,6 +1,6 @@
 // Game classes
-import GameServer from './classes/GameServer.js';
+import GameManager from './classes/GameManager.js';
 
-let gameServer = new GameServer();
+let gameManager = new GameManager();
 
-gameServer.init();
+gameManager.init();

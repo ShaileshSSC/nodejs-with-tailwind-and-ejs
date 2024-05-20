@@ -7,7 +7,7 @@ export default class Router {
     }
 
     init(){
-        console.log('router init..');
+        console.log('router initialized');
         app.set('view engine', 'ejs')
         app.use(express.static('public'))
         app.get('/*', (req, res) => {

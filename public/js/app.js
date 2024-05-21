@@ -1,7 +1,7 @@
-import pageLoader from './pageLoader.js';
+const pageLoader = require('./pageLoader');
 // import user from './user.js';
 
-export default class App{
+class App{
     constructor() {
         const socket = io("http://localhost:3000");
         this.socket = socket;
@@ -10,7 +10,6 @@ export default class App{
     }
 }
 
-new App();
 
 
 

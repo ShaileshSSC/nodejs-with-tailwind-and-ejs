@@ -1,4 +1,4 @@
- export default async function pageLoader(socket) {
+async function pageLoader(socket) {
 
     const pages = [
         {name: 'Home'},

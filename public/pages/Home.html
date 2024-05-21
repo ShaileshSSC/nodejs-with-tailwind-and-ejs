@@ -1,12 +1,11 @@
 <h1>Lobby</h1>
 
-<button onclick="sayStop()" id="stop">STOP</button>
+<button onclick="stop()" id="stop">STOP</button>
 
 <script>
-    // document.getElementById("stop").addEventListener('click', (el)=> {
-    //     alert('clicked');
-    // })
-    // console.log(app);
+    function stop () {
+        socket.emit("stop");
+    }
 </script>
 
 <style>

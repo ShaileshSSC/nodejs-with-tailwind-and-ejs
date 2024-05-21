@@ -5,21 +5,21 @@ export default class GameLogic {
         this.io = io;
     }
 
-    async update() {
+     async update(socket) {
         if(this.started) {
             // load correct pages
-            for (let i = 0; i < this.rounds.length; i++) {
-                this.waitForStop().then((data) => {
-                    console.log("say stop! " + i);
-                })
+            for (let i = 1; i <= this.rounds; i++) {
+                console.log("ROUND: " + i);
+                await this.waitForStop(socket);
             }
+            console.log("finishd game");
 
         }
     }
 
-    waitForStop() {
+    waitForStop(socket) {
         return new Promise((resolve) => {
-            this.io.once('stop', (data) => {
+            socket.once('stop', (data) => {
                 resolve(data);
             });
         });

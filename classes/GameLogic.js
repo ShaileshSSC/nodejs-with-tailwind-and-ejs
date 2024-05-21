@@ -3,12 +3,7 @@ export default class GameLogic {
         this.started = true;
         this.rounds = 3;
         this.io = io;
-        this.pages = [
-            {name: 'Home'},
-            {name: 'Page1'},
-            {name: 'Page2'},
-            {name: 'Page3'},
-        ];
+        this.players = [];
     }
 
     //  async update(socket) {
@@ -25,7 +20,7 @@ export default class GameLogic {
         if(this.started) {
             // load correct pages
             await this.waitForInterval(15, 1500, (c) => {
-                let rnd = Math.floor(Math.random() * 4);
+                let rnd = Math.floor(Math.random() * 3);
                 let page = this.pages[rnd].name;
                 this.io.emit("loadPage", page);
                 console.log(`loading new page: ${page}`);

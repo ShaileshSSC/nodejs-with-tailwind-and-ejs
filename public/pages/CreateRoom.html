@@ -1,0 +1,14 @@
+<input class="text=xl p-2 m-2 font-medium" type="text">
+<button onclick="createRoom()" class="text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create Room</button>
+<button onclick="homePage()" class="text-xl rounded-md bg-gray-300 text-stone-800 hover:bg-gray-200 p-4 m-2 font-medium">Back</button>
+
+<script>
+    function createRoom() {
+        socket.emit("createRoom")
+    }
+
+    function homePage() {
+        socket.emit("joinRoom")
+    }
+
+</script>

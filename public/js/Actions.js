@@ -2,9 +2,8 @@ async function Actions(socket) {
 
     const pages = [
         {name: 'Home'},
-        {name: 'Page1'},
-        {name: 'Page2'},
-        {name: 'Page3'},
+        {name: 'JoinRoom'},
+        {name: 'CreateRoom'},
     ];
 
     const fetchHTML = async (page) => {

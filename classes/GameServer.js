@@ -5,6 +5,8 @@ import UIHandler from "./UIHandler.js";
 import ActionCreateRoom from "./ActionCreateRoom.js";
 import RoomManager from "./RoomManager.js";
 import GameLogic from "./GameLogic.js";
+import ConnectionHandler from "./ConnectionHandler.js";
+import Player from "./Player.js";
 
 export default class GameServer {
     constructor() {
@@ -15,21 +17,30 @@ export default class GameServer {
                 methods: ["GET", "POST"]
             }
         });
+
+        this.UIhandler = new UIHandler(); //observer of subject connectionHandler
+        this.connectionHandler = new ConnectionHandler(); //subject
+
+        this.connectionHandler.subscribe(this.UIhandler.loadHomePage.bind(this.UIhandler))//binded whenever a trigger happens
+
         this.actionCreateRoom = new ActionCreateRoom(); //from socket
         this.roomManager = new RoomManager(); //for game
         this.actionCreateRoom.subscribe(this.roomManager.createRoom.bind(this.roomManager)); // bind 
-
+        this.connections = [];
         this.gameLogic = new GameLogic(this.io);
     }
 
     init() {
+        this.UIhandler.init();
         console.log('game server started');
-        this.gameLogic.update();
-        this.io.on("connection", (socket) => {
-            //this.actionCreateRoom.init(socket);
-            console.log("new USER");
-            // socket.emit("loadPage", 'Home');
-        })
+        // this.io.on("connection", (socket) => {
+        //     let player = new Player(socket, 'Shai');
+        //     this.connections.push(player);
+        //     //this.actionCreateRoom.init(socket);
+        //     console.log("new USER");
+        //     socket.emit("loadPage", 'Home');
+        // })
+        this.io.on("connection", (socket) => this.connectionHandler.init(socket));
         this.io.listen(3000);
     }
 

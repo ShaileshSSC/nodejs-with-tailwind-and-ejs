@@ -1,0 +1,8 @@
+<input class="text=xl p-2 m-2 font-medium" type="text">
+<button onclick="findGame()" class="text-xl rounded-md bg-green-500 text-gray-900 hover:bg-green-600 p-4 m-2 font-medium">Join</button>
+
+<script>
+    function findGame() {
+        socket.emit("findGame")
+    }
+</script>

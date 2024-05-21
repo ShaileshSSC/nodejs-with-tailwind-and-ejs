@@ -21,7 +21,7 @@ export default class GameServer {
         this.UIhandler = new UIHandler(); //observer of subject connectionHandler
         this.connectionHandler = new ConnectionHandler(); //subject
 
-        this.connectionHandler.subscribe(this.UIhandler.loadHomePage.bind(this.UIhandler))//binded whenever a trigger happens
+        this.connectionHandler.subscribe(this.UIhandler.onConnection.bind(this.UIhandler))//binded whenever a trigger happens
 
         this.actionCreateRoom = new ActionCreateRoom(); //from socket
         this.roomManager = new RoomManager(); //for game

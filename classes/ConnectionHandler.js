@@ -8,8 +8,11 @@ export default class ConnectionHandler {
 
     init(socket) {
         // let player = new Player(socket, "default");
-        console.log("hallo");
         this.trigger(socket);
+        console.log("user connection");
+        socket.on("disconnect", () => {
+            console.log("user disconnected");
+        })
     }
 
     subscribe(func) {

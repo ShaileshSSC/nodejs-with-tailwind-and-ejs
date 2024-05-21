@@ -13,8 +13,15 @@ export default class UIHandler {
         socket.emit("loadPage", page);
     }
 
-    loadHomePage(socket) {
-        console.log(`sent homepageeee too ${socket.id} !!`);
+    onConnection(socket) {
+        socket.emit("loadPage", 'Home');
+        socket.on("createRoomPage", () => {
+            console.log("LOADD");
+            socket.emit("loadPage", 'CreateRoom');
+          });
+        socket.on("homePage", () => {
+            socket.emit("loadPage", 'Home');
+        });
     }
 
     

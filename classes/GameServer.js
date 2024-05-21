@@ -28,7 +28,7 @@ export default class GameServer {
             //this.actionCreateRoom.init(socket);
             console.log("new USER");
             socket.emit("loadPage", 'Home');
-            this.gameLogic.update(socket);
+            // this.gameLogic.update(socket);
         })
         this.io.listen(3000);
     }

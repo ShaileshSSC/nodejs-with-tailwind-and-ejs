@@ -2,7 +2,9 @@ async function pageLoader(socket) {
 
     const pages = [
         {name: 'Home'},
-        {name: 'Users'},
+        {name: 'Page1'},
+        {name: 'Page2'},
+        {name: 'Page3'},
     ];
 
     const fetchHTML = async (page) => {

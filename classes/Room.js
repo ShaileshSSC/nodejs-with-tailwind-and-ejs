@@ -4,10 +4,21 @@ export default class Room {
     }
 
     create(socket) {
-        socket.join("some room");
+        // socket.join("some room");
+        console.log("createRoom");
     }
 
     join(socket, roomId) {
         socket.join(roomId);
+    }
+
+    leave(socket, roomId) {
+
+    }
+
+    onConnection(socket) {
+        socket.on("createRoom", () => {
+            this.create(socket);
+        })
     }
 }

@@ -20,7 +20,7 @@ async function Actions(socket) {
 
     console.log(htmlArray);
 
-    socket.on("loadPage", (page) => {
+    socket.on("UI", (page) => {
         const obj = htmlArray.find(el => 
             el.name == page
         )

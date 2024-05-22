@@ -7,6 +7,7 @@ import RoomManager from "./RoomManager.js";
 import GameLogic from "./GameLogic.js";
 import ConnectionHandler from "./ConnectionHandler.js";
 import Player from "./Player.js";
+import Room from "./Room.js";
 
 export default class GameServer {
     constructor() {
@@ -19,9 +20,11 @@ export default class GameServer {
         });
 
         this.UIhandler = new UIHandler(); //observer of subject connectionHandler
+        this.room = new Room();
         this.connectionHandler = new ConnectionHandler(); //subject
 
         this.connectionHandler.subscribe(this.UIhandler.onConnection.bind(this.UIhandler))//binded whenever a trigger happens
+        this.connectionHandler.subscribe(this.room.onConnection.bind(this.room))//binded whenever a trigger happens
 
         this.actionCreateRoom = new ActionCreateRoom(); //from socket
         this.roomManager = new RoomManager(); //for game

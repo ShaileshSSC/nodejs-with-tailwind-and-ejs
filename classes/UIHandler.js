@@ -1,26 +1,27 @@
 export default class UIHandler {
     constructor() {
+        this.EVENT = "UI";
     }
 
     init() {
-        console.log("UI INIT");
-        // io.on("createRoomPage", (page) => {
-        //     console.log(page);
-        // })
-    }
-
-    load(socket, page, data) {
-        socket.emit("loadPage", page);
+        console.log("ui init");
+        //load all the UI for SSR, needs to be tsested first
     }
 
     onConnection(socket) {
-        socket.emit("loadPage", 'Home');
+        // when there is a new connection load the home page
+        socket.emit(this.EVENT, 'Home');
+
         socket.on("createRoomPage", () => {
-            console.log("LOADD");
-            socket.emit("loadPage", 'CreateRoom');
+            socket.emit(this.EVENT, 'CreateRoom');
           });
+
+        socket.on("createRoom", () => {
+            socket.emit(this.EVENT, 'Lobby');
+        });
+
         socket.on("homePage", () => {
-            socket.emit("loadPage", 'Home');
+            socket.emit(this.EVENT, 'Home');
         });
     }
 

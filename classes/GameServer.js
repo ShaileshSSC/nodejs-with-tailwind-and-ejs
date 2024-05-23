@@ -34,6 +34,10 @@ export default class GameServer {
         // this.gameLogic = new GameLogic(this.io);
     }
 
+    init() {
+        this.game.init();
+    }
+
     update() {
         // this.UIhandler.init();
         console.log('game server started');

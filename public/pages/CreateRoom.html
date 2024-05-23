@@ -4,6 +4,7 @@
 
 <script>
     function createRoom() {
+        socket.emit("setUsername", 'shai');
         socket.emit("createRoom")
     }
 

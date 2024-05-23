@@ -8,9 +8,13 @@ export default class UIHandler {
         //load all the UI for SSR, needs to be tsested first
     }
 
-    onConnection(socket) {
+    load(page, player) {
+        player.socket.emit(this.EVENT, page);
+    }
+
+    onConnection(player) {
         // when there is a new connection load the home page
-        socket.emit(this.EVENT, 'Home');
+        player.socket.emit(this.EVENT, 'Home');
 
         socket.on("createRoomPage", () => {
             socket.emit(this.EVENT, 'CreateRoom');

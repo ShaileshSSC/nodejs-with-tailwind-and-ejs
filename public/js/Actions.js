@@ -1,31 +1,8 @@
-async function Actions(socket) {
-
-    const pages = [
-        {name: 'Home'},
-        {name: 'JoinRoom'},
-        {name: 'CreateRoom'},
-    ];
-
-    const fetchHTML = async (page) => {
-        const response = await fetch(`./pages/${page}.html`);
-        const html = await response.text();
-        return html;
-    }
-
-    //
-    const htmlArray = await Promise.all(pages.map(async page => {
-        const response = await fetchHTML(page.name)
-        return {name: page.name, html: response}
-    }));
-
-    console.log(htmlArray);
+function Actions(socket) {
 
     socket.on("UI", (page) => {
-        const obj = htmlArray.find(el => 
-            el.name == page
-        )
         document.getElementById('root').innerHTML = '';
-        const exe = document.createRange().createContextualFragment(obj.html);
+        const exe = document.createRange().createContextualFragment(page);
         document.getElementById('root').append(exe);
     });
 }

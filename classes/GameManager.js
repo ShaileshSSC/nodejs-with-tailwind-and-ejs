@@ -11,6 +11,7 @@ export default class GameManager {
 
     init() {
         this.router.init();
+        this.gameServer.init();
         // this.gameServer.init();
         // console.log('game init.. started status:' + this.game.started);
     }

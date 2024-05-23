@@ -6,16 +6,21 @@ export default class Player{
     }
 
     async update() {
-        await this.waitForUserName();
+        this.socket.on("setUsername", (name) => {
+            this.handleSetUsername(name);
+        });
+    }
+
+    handleSetUsername(name) {
+       this.name = name;
     }
 
     async waitForUserName() {
-        return new Promise(resolve=> { 
-            this.socket.once("setUsername", (name) => {
-                this.name = name;
-                console.log(name);
-                resolve();
-            })
+        //  deze code moet in update komen
+        return new Promise(resolve=> {
+            //deze moet waitforusername heten 
+            this.update();
+            resolve()
         })
     }
 

@@ -21,12 +21,14 @@ export default class Game {
 
         while(this.started) {
             this.menuLogic.update(player);
-            await Promise.all([
-                this.menuLogic.onExit(player),
-                player.update()
-            ])
-            this.UIhandler.load(this.menuLogic.pages.Lobby, player);
-                
+            // await Promise.all([
+            //     this.menuLogic.onExit(player),
+            //     player.waitForUserName()
+            // ])
+            await this.menuLogic.onExit(player);
+            player.update()
+            await player.waitForUserName();
+                console.log(player.name)
         }
     }
 }

@@ -1,38 +1,29 @@
 import UIHandler from './UIHandler.js';
-import MenuLogic from './MenuLogic.js';
+
 import Player from './Player.js';
-import GameLogic from './GameLogic.js';
+
+import Program from './Program.js';
 
 export default class Game {
     constructor() {
-        this.players = {};
+        this.programs = {};
         this.started = true;
         this.UIhandler = new UIHandler();
     }
 
     async init() {
         await this.UIhandler.init();
-        this.menuLogic = new MenuLogic(this.UIhandler);
-        this.gameLogic = new GameLogic(this.UIhandler);
-        this.menuLogic.init();
-        this.gameLogic.init();
         // this.menuLogic.subscribe(this.switchState.bind(this));
     }
 
     addEvents(player) {
-        this.menuLogic.addEvents(player);
-        this.gameLogic.addEvents(player)
+        
     }
 
     //probleem hoe moet ik player updaten inside menu
-    async update() {
+    async update(socketId) {
 
-        while(true) {
-            this.menuLogic.update();
-                await this.menuLogic.waitingForExit();
-                    this.gameLogic.update();
-                await this.gameLogic.waitingForExit();
-        }
+        this.programs[socketId].update();
             // await Promise.all([
             //     this.currentState.onExit(player),
             //     player.waitForUserName()
@@ -43,11 +34,14 @@ export default class Game {
             //     console.log(player.name)
     }
 
-    createPlayer(socket) {
+    async createProgram(socket) {
         let player = new Player(socket);
-        this.players[socket.id] = player;
+        let program = new Program(player, this.UIhandler)
+        program.init();
+        program.addEvents(player)
+        this.programs[socket.id] = program;
         console.log(`new connection: ${socket.id}`);
-        return player;
+        return program;
     }
 
 

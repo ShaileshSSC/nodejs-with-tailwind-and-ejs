@@ -37,13 +37,15 @@ export default class GameServer {
     async init() {
         await this.game.init();
         this.io.on("connection", (socket) => {
-            const player = this.game.createPlayer(socket);
-            this.game.addEvents(player);
+            this.game.createProgram(socket).then(
+                console.log('update'),
+                this.game.update(socket.id)
+            );
         });
     }
 
     update() {
-        this.game.update();
+
         this.io.listen(3000);
     }
 

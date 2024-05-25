@@ -6,6 +6,7 @@ import GameLogic from './GameLogic.js';
 export default class Game {
     constructor() {
         this.players = {};
+        this.games = {}
         this.started = true;
         this.UIhandler = new UIHandler();
     }
@@ -27,12 +28,12 @@ export default class Game {
     //probleem hoe moet ik player updaten inside menu
     async update() {
 
-        while(true) {
-            this.menuLogic.update();
-                await this.menuLogic.waitingForExit();
-                    this.gameLogic.update();
-                await this.gameLogic.waitingForExit();
-        }
+        // while(true) {
+        //     this.menuLogic.update();
+        //         await this.menuLogic.waitingForExit();
+        //             this.gameLogic.update();
+        //         await this.gameLogic.waitingForExit();
+        // }
             // await Promise.all([
             //     this.currentState.onExit(player),
             //     player.waitForUserName()

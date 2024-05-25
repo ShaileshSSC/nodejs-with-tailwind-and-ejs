@@ -1,15 +1,24 @@
 <input class=" block text=xl p-2 m-2 font-medium bg-stone-200" type="text">
-<button onclick="createRoom()" class="block text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create</button>
-<button onclick="homePage()" class="block text-xl rounded-md bg-red-500 text-slate-100 hover:bg-red-400 p-4 m-2 font-medium">Back</button>
+<button onclick="Myapp.createRoom()" class="block text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create</button>
+<button onclick="Myapp.homePage()" class="block text-xl rounded-md bg-red-500 text-slate-100 hover:bg-red-400 p-4 m-2 font-medium">Back</button>
 
 <script>
-    function createRoom() {
-        socket.emit("setUsername", 'shai');
-        socket.emit("createRoom")
+
+    const Myapp = {
+        createRoom: function() {
+        socket.emit("createRoom", 'shai')
+        },
+        homePage: function(){
+            socket.emit("homePage")
+        }
     }
 
-    function homePage() {
-        socket.emit("homePage")
-    }
+    // function createRoom() {
+    //     socket.emit("createRoom", 'shai')
+    // }
+
+    // function homePage() {
+    //     socket.emit("homePage")
+    // }
 
 </script>

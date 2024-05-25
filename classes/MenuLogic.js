@@ -28,27 +28,8 @@ export default class MenuLogic {
 
     async update () {
 
-        this.mainloop = true;
-
-        while(this.mainloop) {
-            const action = await Promise.race([
-                this.waitingForAction()
-            ]);
-
-            console.log(action[0], action[1].id);
-        }
+       
     }
 
-    waitingForAction() {
-        return new Promise((resolve) => {
-            this.action = resolve;
-          });
-      }
-
-    waitingForExit() {
-        return new Promise((resolve) => {
-            this.exit = resolve;
-          });
-      }
 
 }

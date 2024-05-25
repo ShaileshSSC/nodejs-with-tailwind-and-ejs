@@ -1,8 +1,15 @@
-export default class Player{
+export default class Player {
     constructor(socket) {
         this.socket = socket;
         this.id = socket.id;
         this.name = 'no_username';
+    }
+
+    addEvents() {
+        this.socket.on("createRoom", (userName) => {
+            this.name = userName;
+            console.log(this.name);
+        });
     }
 
     async update() {
@@ -11,18 +18,8 @@ export default class Player{
         });
     }
 
-    handleSetUsername(name) {
+    setUsername(name) {
        this.name = name;
     }
 
-    async waitForUserName() {
-        //  deze code moet in update komen
-        return new Promise(resolve=> {
-            //deze moet waitforusername heten 
-            this.update();
-            resolve()
-        })
-    }
-
-    
 }

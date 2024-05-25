@@ -1,11 +1,16 @@
 export default class Room {
     constructor() {
         this.players = [];
+        this.roomId = 'room1';
     }
 
-    create(socket) {
-        // socket.join("some room");
-        console.log("createRoom");
+    addEvents(player) {
+
+    }
+
+    addPlayer(player) {
+        player.socket.join(this.roomId);
+        this.players.push(player);
     }
 
     join(socket, roomId) {

@@ -1,11 +1,16 @@
-<button onclick="createRoomPage()" class="block text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create Room</button>
-<button onclick="joinRoomPage()" class="block text-xl rounded-md bg-gray-300 text-stone-800 hover:bg-gray-200 p-4 m-2 font-medium">Join Room</button>
+<button id="createbtn" class="block text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create Room</button>
+<button id="joinbtn" onclick="joinRoomPage()" class="block text-xl rounded-md bg-gray-300 text-stone-800 hover:bg-gray-200 p-4 m-2 font-medium">Join Room</button>
 
-<script>
+<script type="module">
+
+    document.getElementById('createbtn').addEventListener('click', createRoomPage);
+    document.getElementById('joinbtn').addEventListener('click', joinRoomPage);
+
     function createRoomPage() {
         socket.emit("createRoomPage")
     }
 
+   
     function joinRoomPage() {
         socket.emit("joinRoomPage")
     }

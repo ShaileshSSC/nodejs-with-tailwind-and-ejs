@@ -8,7 +8,7 @@ export default class GameLogic {
     }
 
     addEvents(player) {
-
+        
     }
 
     init() {

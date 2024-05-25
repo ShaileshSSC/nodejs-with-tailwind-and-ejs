@@ -8,7 +8,7 @@ export default class Router {
 
     }
 
-    init(){
+    async init(){
         console.log('router initialized');
         const file = path.join('public', 'screen.html');
         app.use(express.static('public'))

@@ -1,9 +1,19 @@
 export default class GameLogic {
-    constructor(io) {
+    constructor(UIhandler) {
         this.started = true;
         this.rounds = 3;
-        this.io = io;
+        // this.io = io;
+        this.UIhandler = UIhandler;
         this.players = [];
+    }
+
+    addEvents(player) {
+
+    }
+
+    init() {
+        //this.UIhandler.load(this.UIhandler.pages.Home, player)
+        // console.log(this.UIhandler.pages);
     }
 
     //  async update(socket) {
@@ -16,8 +26,9 @@ export default class GameLogic {
     //         console.log("finishd game");
 
     //     }
-    async update() {
-        if(this.started) {
+    async update(player) {
+
+        // if(this.started) {
             // step 1 load correct pages
             // start round loop x rounds
                 // wacht totad speler stop heeft gezegd
@@ -28,16 +39,12 @@ export default class GameLogic {
             // show finished game animation
             // show degene die heeft gewonnen YOU won en derest zijn 2de of 3de plek
             // daarna show alle scores met plek
-            await this.waitForInterval(15, 1500, (c) => {
-                let rnd = Math.floor(Math.random() * 3);
-                let page = this.pages[rnd].name;
-                this.io.emit("loadPage", page);
-                console.log(`loading new page: ${page}`);
-            });
+            // await this.waitForInterval(15, 1500, (c) => {
+            //     console.log(`loading new page`);
+            // });
             console.log("finishd game");
 
         }
-    }
 
     waitForInterval(times, interval, callback) {
         return new Promise((resolve) => {

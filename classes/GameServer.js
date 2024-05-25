@@ -34,32 +34,17 @@ export default class GameServer {
         // this.gameLogic = new GameLogic(this.io);
     }
 
-    init() {
-        this.game.init();
+    async init() {
+        await this.game.init();
+        this.io.on("connection", (socket) => {
+            const player = this.game.createPlayer(socket);
+            this.game.addEvents(player);
+        });
     }
 
     update() {
-        // this.UIhandler.init();
-        console.log('game server started');
-        // this.io.on("connection", (socket) => {
-        //     let player = new Player(socket, 'Shai');
-        //     this.connections.push(player);
-        //     //this.actionCreateRoom.init(socket);
-        //     console.log("new USER");
-        //     socket.emit("loadPage", 'Home');
-        // })
-        this.io.on("connection", (socket) => {
-            this.game.update(socket);
-        });
+        this.game.update();
         this.io.listen(3000);
-    }
-
-    async hasConnection() {
-       
-    }
-
-    onConnection() {
-        //this.uiHandler.init(socket);
     }
 
 

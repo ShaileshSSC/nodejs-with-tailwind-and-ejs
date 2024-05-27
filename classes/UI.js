@@ -55,7 +55,7 @@ export default class UI {
     
             // Set up a listener for the "loaded" event
             player.socket.once("loaded", () => {
-                resolve();
+                resolve('baboe');
             });
         });
     }

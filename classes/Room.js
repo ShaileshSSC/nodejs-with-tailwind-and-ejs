@@ -5,14 +5,18 @@ export default class Room {
         this.roomId = roomId;
     }
 
-    addEvents(player) {
-        player.socket.on("createRoomLoaded", () => {
-            //player.socket.emit("userName", player.name);
-        })
-    }
-
     addNewPlayer(player) {
         this.players.push(player);
+    }
+
+    getJoinedPlayers(playerId) {
+        let joinedPlayers = []
+        this.players.forEach(player => {
+            joinedPlayers.push({
+                name: player.name
+            })
+        });
+        return joinedPlayers;
     }
 
     addPlayer(player) {
@@ -26,11 +30,5 @@ export default class Room {
 
     leave(socket, roomId) {
 
-    }
-
-    onConnection(socket) {
-        socket.on("createRoom", () => {
-            this.create(socket);
-        })
     }
 }

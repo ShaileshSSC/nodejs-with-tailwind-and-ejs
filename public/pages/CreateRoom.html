@@ -10,8 +10,7 @@
 
     function createRoom() {
         let userName = document.getElementById('userName').value;
-        socket.emit("createRoom");
-        socket.emit("userName", userName);
+        socket.emit("ActionCreateRoom", userName);
     }
 
     function homePage() {

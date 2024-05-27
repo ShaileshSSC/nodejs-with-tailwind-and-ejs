@@ -9,7 +9,7 @@ export default class Game {
         this.started = true;
         this.UI = new UI();
         this.io = io;
-        this.actionCreateRoom = new ActionCreateRoom(this.players, this.rooms, this.UI);
+        this.actionCreateRoom = new ActionCreateRoom(this.rooms, this.players, this.UI);
     }
 
     async init() {

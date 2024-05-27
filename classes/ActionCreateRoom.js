@@ -8,14 +8,19 @@ export default class ActionCreateRoom {
     }
 
     addEvents(player) {
-        player.socket.on("createRoom", (userName) => {
-            let player = this.attachUsernameHost(player, userName); 
+        player.socket.on("ActionCreateRoom", (userName) => {
+            let newPlayer = this.attachUsernameHost(player, userName); 
             let room = this.createRoom(); 
-            room.addNewPlayer(player);
+            room.addNewPlayer(newPlayer);
             this.rooms.push(room);
-            this.UI.render(this.UI.pages.Lobby, player)
-                .then(socket.emit("userName", userName)
-                .then(socket.emit("joinedPlayers", room.players)));
+            this.UI.render(this.UI.pages.Lobby, newPlayer)
+                .then(()=> {
+                    let joinedPlayers = room.getJoinedPlayers(player.id);
+                    player.socket.emit("userName", userName)
+                    console.log(joinedPlayers);
+                    player.socket.emit("joinedPlayers", joinedPlayers)
+                })
+                // .then(player.socket.emit("joinedPlayers", room.players)));
         })
     }
 

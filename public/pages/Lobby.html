@@ -1,20 +1,22 @@
 <h1 id="userName" class="text-2xl bg-red-500 p-4 m-4 font-medium">Game</h1>
-<h3 id="players" class="p-2">Loading players</h3>
+<ul id="playerList" class="p-2"></ul>
+<li id="li" class="text-red-300 font-medium text-2xl"></li>
 <script type="module">
 
     const userName = document.getElementById('userName');
-    const players = document.getElementById('players');
+    const playerList = document.getElementById('playerList');
+    const li = document.getElementById('li');
 
-    userName.onload = (event) => { };
     
     socket.on("userName",(name) => {
         userName.innerHTML = name;
     });
 
-    socket.on("players",(players) => {
-        players.foreach(player => {
-            console.log(player);
-        })
+    socket.on("joinedPlayers",(players) => {
+        players.forEach(player => {    
+            li.textContent = player.name;
+            playerList.appendChild(li);
+        });
     });
     
 </script>

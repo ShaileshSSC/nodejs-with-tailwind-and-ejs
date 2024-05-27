@@ -1,5 +1,5 @@
 <button id="createbtn" class="block text-xl rounded-md bg-gray-300 text-stone-800  hover:bg-gray-200 p-4 m-2 font-medium">Create Room</button>
-<button id="joinbtn" onclick="joinRoomPage()" class="block text-xl rounded-md bg-gray-300 text-stone-800 hover:bg-gray-200 p-4 m-2 font-medium">Join Room</button>
+<button id="joinbtn"  class="block text-xl rounded-md bg-gray-300 text-stone-800 hover:bg-gray-200 p-4 m-2 font-medium">Join Room</button>
 
 <script type="module">
 
@@ -7,11 +7,11 @@
     document.getElementById('joinbtn').addEventListener('click', joinRoomPage);
 
     function createRoomPage() {
-        socket.emit("createRoomPage")
+        socket.emit("createRoomPage");
     }
-
    
     function joinRoomPage() {
-        socket.emit("joinRoomPage")
+       socket.emit("joinRoomPage");
     }
+    
 </script>

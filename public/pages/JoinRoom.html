@@ -1,8 +1,27 @@
-<input class="text=xl p-2 m-2 font-medium" type="text">
-<button onclick="findGame()" class="text-xl rounded-md bg-green-500 text-gray-900 hover:bg-green-600 p-4 m-2 font-medium">Join</button>
+<span class="text-2xl font-medium block m-2">Enter username</span>
+<input id="userName" class=" block text=xl p-2 m-2 font-medium bg-stone-200" type="text">
+<span class="text-2xl  font-medium block m-2">Enter Room id</span>
+<input class=" block text=xl p-2 m-2 font-medium bg-stone-200" type="text">
+<button id="findGame" class=" block text-xl rounded-md bg-green-400 text-gray-900 hover:bg-green-600 p-4 m-2 font-medium">Join</button>
+<button id="home" class="block text-xl rounded-md bg-red-500 text-slate-100 hover:bg-red-400 p-4 m-2 font-medium">Back</button>
 
 <script>
+
+    document.getElementById('findGame').addEventListener('click', findGame);
+    document.getElementById('home').addEventListener('click', homePage);
+
     function findGame() {
-        socket.emit("findGame")
+        let userName = document.getElementById('userName').value;
+        if (userName.length == 0) {
+            alert('fill in username');
+            return;
+        }
+        socket.emit("userName", userName);
+        socket.emit("findGame", 'room1');
     }
+
+    function homePage() {
+        socket.emit("homePage");
+    }
+
 </script>

@@ -3,9 +3,7 @@ function Actions(socket) {
 
     socket.on("UI", (page) => {
 
-        console.log("shai");
-        
-        delete aa;
+        console.log("new page loaded");
 
         document.getElementById('root').innerHTML = '';
         const exe = document.createRange().createContextualFragment(page);

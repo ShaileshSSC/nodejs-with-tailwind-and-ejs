@@ -1,11 +1,11 @@
-<h1 id="userName" class="text-2xl bg-red-500 p-4 m-4 font-medium">Game</h1>
+<h1 id="userName" class="text-2xl bg-red-500 p-4 m-4 font-medium">Guest</h1>
 <h3 id="players" class="p-2">Loading players</h3>
 <script type="module">
 
     const userName = document.getElementById('userName');
     const players = document.getElementById('players');
 
-    userName.onload = (event) => { };
+    socket.emit("LobbyGuestLoaded");
     
     socket.on("userName",(name) => {
         userName.innerHTML = name;

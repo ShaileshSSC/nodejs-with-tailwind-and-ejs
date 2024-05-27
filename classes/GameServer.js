@@ -19,7 +19,7 @@ export default class GameServer {
                 methods: ["GET", "POST"]
             }
         });
-        this.game = new Game();
+        this.game = new Game(this.io);
         // this.UIhandler = new UIHandler(); //observer of subject connectionHandler
         // this.room = new Room();
         // this.connectionHandler = new ConnectionHandler(); //subject

@@ -5,11 +5,12 @@ import GameLogic from './GameLogic.js';
 import Room from './Room.js';
 
 export default class Game {
-    constructor() {
+    constructor(io) {
         this.players = {};
         this.started = true;
         this.UIhandler = new UIHandler();
         this.rooms = [];
+        this.io = io;
     }
 
     async init() {
@@ -29,8 +30,24 @@ export default class Game {
             let room = new Room();
             room.addPlayer(player);
             this.rooms.push(room);
-            player.socket.emit("createRoom", {userName: player.name})
          });
+
+        player.socket.on("findGame", (roomId) => {
+            this.rooms.forEach(room => {
+                if(roomId == room.roomId) {
+                    room.join(this.players[player.id])
+                    this.menuLogic.UIhandler.load(this.menuLogic.UIhandler.pages.LobbyGuest, this.players[player.id])
+                    return;
+                }
+            });
+         });
+
+        player.socket.on("userName", (userName) => {
+            for (const key in this.players) {
+                console.log(`${key}: ${this.players[key].name}`);
+            }
+        })
+
     }
 
     async update() {

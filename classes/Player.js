@@ -6,10 +6,15 @@ export default class Player {
     }
 
     addEvents() {
-        this.socket.on("createRoom", (userName) => {
+
+        this.socket.on("userName", (userName) => {
             this.name = userName;
-            console.log(this.name);
-        });
+        })
+
+        this.socket.on("createRoomLoaded", () => {
+            this.socket.emit("userName", this.name)
+        })
+
     }
 
     async update() {

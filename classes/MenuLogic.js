@@ -17,10 +17,20 @@ export default class MenuLogic {
             this.UIhandler.load(this.UIhandler.pages.Home, player);
         });
 
+        player.socket.on("joinRoomPage", () => {
+            //console.log(`${player.id} visiting homePage`);
+            this.UIhandler.load(this.UIhandler.pages.JoinRoom, player);
+        });
+
         player.socket.on("createRoom", () => {
              //console.log(`${player.id} wants to create a Room`);
              this.UIhandler.load(this.UIhandler.pages.Lobby, player);
         });
+
+        player.socket.on("foundGame", () => {
+            //console.log(`${player.id} wants to create a Room`);
+            console.log("SERVER");
+       });
     }
 
     init() {

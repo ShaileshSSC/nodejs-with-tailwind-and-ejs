@@ -1,21 +1,28 @@
+import Room from "./Room";
+
 export default class ActionCreateRoom {
-    constructor() {
-        this.registeredMethods = [];
+    constructor(rooms, players) {
+        this.players = players;
+        this.rooms = rooms;
     }
 
-    init(socket) {
-        // socket.on("ActionCreateRoom", () => {
-        //     this.trigger(socket);
-        // })
-        this.trigger(socket);
+    addEvents(player) {
+        player.socket.on("createRoom", (userName) => {
+            let player = this.attachUsernameHost(player, userName);
+            let room = this.createRoom();
+            room.addNewPlayer(player);
+            this.rooms.push(room)
+        })
     }
 
-    subscribe(func) {
-        this.registeredMethods.push(func);
+    attachUsernameHost(player, userName) {
+        player.name = userName;
+        return player;
     }
 
-    trigger(socket) {
-        this.registeredMethods.forEach(func => func(socket));
+    createRoom() {
+        const randomRoomId = Math.floor(Math.random() * 990) + 1;
+        return new Room(randomRoomId);
     }
 
 

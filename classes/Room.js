@@ -11,6 +11,10 @@ export default class Room {
         })
     }
 
+    addNewPlayer(player) {
+        this.players.push(player);
+    }
+
     addPlayer(player) {
         player.socket.join(this.roomId);
         this.players.push(player);

@@ -1,42 +1,37 @@
-import UIHandler from './UIHandler.js';
-import MenuLogic from './MenuLogic.js';
 import Player from './Player.js';
-import GameLogic from './GameLogic.js';
-import Room from './Room.js';
+import ActionCreateRoom from './ActionCreateRoom.js';
+import UI from './UI.js';
 
 export default class Game {
     constructor(io) {
         this.players = {};
-        this.started = true;
-        this.UIhandler = new UIHandler();
         this.rooms = [];
+        this.started = true;
+        this.UI = new UI();
         this.io = io;
+        this.actionCreateRoom = new ActionCreateRoom(this.players, this.rooms, this.UI);
     }
 
     async init() {
-        await this.UIhandler.init();
-        this.menuLogic = new MenuLogic(this.UIhandler);
-        this.gameLogic = new GameLogic(this.UIhandler);
-        this.menuLogic.init();
-        this.gameLogic.init();
+        await this.UI.init();
         // this.menuLogic.subscribe(this.switchState.bind(this));
     }
 
     addEvents(player) {
-        this.menuLogic.addEvents(player);
-        this.gameLogic.addEvents(player)
+        this.UI.addEvents(player);
+        this.actionCreateRoom.addEvents(player);
 
-        player.socket.on("createRoom", () => {
-            let room = new Room();
-            room.addPlayer(player);
-            this.rooms.push(room);
-         });
+        // player.socket.on("createRoom", () => {
+        //     let room = new Room();
+        //     room.addPlayer(player);
+        //     this.rooms.push(room);
+        //  });
 
         player.socket.on("findGame", (roomId) => {
             this.rooms.forEach(room => {
                 if(roomId == room.roomId) {
                     room.join(this.players[player.id])
-                    this.menuLogic.UIhandler.load(this.menuLogic.UIhandler.pages.LobbyGuest, this.players[player.id])
+                    this.UI.load(this.UI.pages.LobbyGuest, this.players[player.id])
                     return;
                 }
             });

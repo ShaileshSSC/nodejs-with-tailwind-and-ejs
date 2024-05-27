@@ -1,8 +1,8 @@
 export default class Room {
-    constructor() {
+    constructor(roomId) {
         //somwhere here create random room id
         this.players = [];
-        this.roomId = 'room1';
+        this.roomId = roomId;
     }
 
     addEvents(player) {
